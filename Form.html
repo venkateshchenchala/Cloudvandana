@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Customer Survey Form</title>
+    <style>
+        form{
+            margin: 100px 350px;
+            padding: 10px;
+            background-color:rgb(13, 153, 232);
+            display: inline-block;
+        }
+        caption{
+            color: white;
+            font-size: 20px;
+        }
+        table{
+            background-color: white;
+        }
+        #submit{
+            color: white;
+            background-color:rgb(13, 153, 232);
+            border: none;
+            padding: 5px;
+        }
+        #reset{
+            color: white;
+            background-color:rgb(13, 153, 232);
+            border: none;
+            padding: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+    <form action="" id="my-form">
+        <table>
+            <caption>Customer Survey Form </caption>
+            <tr>
+                <td><label for="">First Name</label></td>
+                <td><input type="text" id="firstName" name="First Name"></td>
+            </tr>
+            <tr>  
+                <td><label for="">Last Name</label></td>
+                <td><input type="text" id="lastName" name="Last Name"></td>
+            </tr>
+            <tr>
+                <td><label for="">Date Of Birth(DOB)</label></td>
+                <td><input type="date" id="dob" name="DOB"></td>
+            </tr>
+            <tr>
+                <td><label for="">Country</label></td>
+                <td>
+                    <select  id="country" name="Country">
+                        <option>India</option>
+                        <option>Australia</option>
+                        <option>Bangladesh</option>
+                        <option>Bhutan</option>
+                        <option>Canada</option>
+                        <option>China</option>
+                        <option>Germany</option>
+                        <option>France</option>
+                        <option>Italy</option>
+                        <option>United States</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="">Gender</label></td>
+                <td><input type="radio" name="gender" value="Male">Male
+                     <input type="radio" name="gender" value="Female">Female</td>
+            </tr>
+            <tr>
+                <td><label for="">Profession</label></td>
+                <td><input type="text" id="profession" name="Profession" placeholder="Enter Your Profession"></td>
+            </tr>
+            <tr>
+                <td><label for="">Email</label></td>
+                <td><input type="email" id="email" name="Email" placeholder="Enter Your Email"></td>
+            </tr>
+            <tr>
+                <td><label for="">Mobile Number</label></td>
+                <td><input type="text" id="mobile" name="Mobile Number" placeholder="Enter Your Number" maxlength="10"></td>
+            </tr>
+            <tr>
+                <td><label for="">Is this first time You are using our products & service?</label></td>
+            </tr>
+            <tr><td><input type="radio" name="Is this first time You are using our products & service?" value="Yes">Yes
+                <input type="radio" name="Is this first time You are using our products & service?" value="No">No</td></tr>
+
+            <tr>
+                <td><label for="">Would you suggestion to your friends and colleague?</label></td>
+            </tr>
+            <tr>
+                <td><input type="radio" name="Would you suggestion to your friends and colleague?" value="Yes">Yes
+                <input type="radio" name="Would you suggestion to your friends and colleague?" value="No">No</td></tr>
+            <tr>
+                <td><label for="">How satisfied are you with our company overall?</label></td>
+            </tr>
+            <tr><td><input type="radio" name="How satisfied are you with our company overall?" value="Satisfied">Satisfied
+                <input type="radio" name="How satisfied are you with our company overall?" value="Undecided">Undecided
+                <input type="radio" name="How satisfied are you with our company overall?" value="Unsatisfied">Unsatisfied
+            </td></tr>
+            <tr>
+                 <td colspan="2" align="center">
+                    <button type="button" onclick="submitForm()">Submit</button>
+                    <input type="reset" id="reset">
+                 </td>
+            </tr>
+        </table>
+       
+    </form>
+</head>
+<body>
+    <script>
+        function submitForm() {
+      // Get form values
+      var firstName = document.getElementById("firstName").value;
+      var lastName = document.getElementById("lastName").value;
+      var dob = document.getElementById("dob").value;
+      var country = document.getElementById("country").value;
+      var gender = document.querySelectorAll('input[name="gender"]:checked');
+      var profession = document.getElementById("profession").value;
+      var email = document.getElementById("email").value;
+      var mobile = document.getElementById("mobile").value;
+
+      // Validate the form
+      if (!firstName || !lastName || !dob || !country || gender.length === 0 || !profession || !email || !mobile) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      // Prepare data for popup
+      var genderValues = [];
+      gender.forEach(function(input) {
+        genderValues.push(input.value);
+      });
+
+      var popupText = "First Name: " + firstName + "\n";
+      popupText += "Last Name: " + lastName + "\n";
+      popupText += "Date of Birth: " + dob + "\n";
+      popupText += "Country: " + country + "\n";
+      popupText += "Gender: " + genderValues.join(", ") + "\n";
+      popupText += "Profession: " + profession + "\n";
+      popupText += "Email: " + email + "\n";
+      popupText += "Mobile Number: " + mobile;
+
+      // Display popup
+      alert(popupText);
+
+      // Reset the form
+      document.getElementById("surveyForm").reset();
+    }
+
+    function resetForm() {
+      document.getElementById("surveyForm").reset();
+    }
+  </script>
+</head>
+</body>
+</html>
